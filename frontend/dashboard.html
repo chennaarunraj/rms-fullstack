@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow p-4 mb-6 flex justify-between">
+    <h1 class="text-xl font-bold">🍽 Restaurant App</h1>
+    <div class="space-x-4">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="dashboard.html" class="font-semibold text-red-600">Admin</a>
+    </div>
+  </nav>
+
+  <h1 class="text-3xl font-bold mb-6">Admin Dashboard</h1>
+
+  <table class="w-full bg-white rounded shadow">
+    <thead class="bg-gray-200">
+      <tr>
+        <th class="p-3">Order ID</th>
+        <th class="p-3">Item</th>
+        <th class="p-3">Status</th>
+      </tr>
+    </thead>
+    <tbody id="orderTable"></tbody>
+  </table>
+  
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

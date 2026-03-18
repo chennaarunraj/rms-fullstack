@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow p-4 mb-6 flex justify-between">
+    <h1 class="text-xl font-bold">🍽 Restaurant App</h1>
+    <div class="space-x-4">
+      <a href="index.html">Home</a>
+      <a href="menu.html" class="font-semibold">Menu</a>
+      <a href="dashboard.html" class="text-red-600">Admin</a>
+    </div>
+  </nav>
+
+  <h1 class="text-3xl font-bold mb-6">Menu</h1>
+
+  <!-- MENU ITEMS -->
+  <div id="menuContainer" class="grid md:grid-cols-3 gap-6"></div>
+
+  <!-- PLACE ORDER -->
+  <button
+    onclick="placeOrder()"
+    class="mt-8 bg-black text-white px-6 py-3 rounded"
+  >
+    Place Order
+  </button>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
