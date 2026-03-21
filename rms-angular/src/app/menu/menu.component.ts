@@ -25,14 +25,22 @@ constructor(
 ){}
 ngOnInit() {
 
-  this.menuService.getMenu().subscribe((data:any) => {
+  console.log("MenuComponent initialized"); // 🔥 DEBUG 1
 
-    this.menuItems = data;
-    this.filteredItems = data;
+  this.menuService.getMenu().subscribe({
+    next: (data: any) => {
+      console.log("MENU DATA:", data); // 🔥 DEBUG 2
 
-    const cats: string[] = data.map((item:any) => item.category);
-    this.categories = ["All", ...Array.from(new Set<string>(cats))];
+      this.menuItems = data;
+      this.filteredItems = data;
 
+      const cats: string[] = data.map((item:any) => item.category);
+      this.categories = ["All", ...Array.from(new Set<string>(cats))];
+    },
+
+    error: (err) => {
+      console.error("MENU ERROR:", err); // 🔥 DEBUG 3
+    }
   });
 
 }

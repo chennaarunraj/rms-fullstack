@@ -23,7 +23,12 @@ const corsOptions = {
 };
 
 // ✅ APPLY CORS BEFORE EVERYTHING
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+  next();
+});
 app.use(express.json());
 
 // 🔥 SOCKET.IO WITH SAME CORS

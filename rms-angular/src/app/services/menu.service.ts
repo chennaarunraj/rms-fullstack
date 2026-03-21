@@ -11,7 +11,7 @@ export class MenuService {
 
   constructor(private http: HttpClient) {}
 
-  getMenu(): Observable<any[]> {
-    return this.http.get<any[]>(this.API_URL);
-  }
+getMenu() {
+  return this.http.get(this.API_URL);
+}
 }
