@@ -45,7 +45,7 @@ router.patch('/:id/status', async (req, res) => {
     io.emit('order-updated', updatedOrder);
 
     res.json(updatedOrder);
-
+w
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
