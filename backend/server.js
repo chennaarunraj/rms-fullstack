@@ -22,7 +22,9 @@ const io = new Server(server, {
 const PORT = 5000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.json());
 
 // Attach io to app so routes can use it
