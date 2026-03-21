@@ -13,34 +13,38 @@ const authRoutes = require("./routes/auth.routes");
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-}); 
-
 const PORT = 5000;
 
-// Middlewares
-app.use(cors({
-  origin: '*'
-}));
+// 🔥 CORS CONFIG (VERY IMPORTANT)
+const corsOptions = {
+  origin: "http://localhost:4200", // frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+// ✅ APPLY CORS BEFORE EVERYTHING
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Attach io to app so routes can use it
+// 🔥 SOCKET.IO WITH SAME CORS
+const io = new Server(server, {
+  cors: corsOptions,
+});
+
+// Attach io to app
 app.set("io", io);
 
 // Routes
 app.use("/api/menu", menuRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
 
 // Socket connection
 io.on("connection", (socket) => {
-  console.log("Admin connected to real-time updates");
+  console.log("Client connected to real-time updates");
 
   socket.on("disconnect", () => {
-    console.log("Admin disconnected");
+    console.log("Client disconnected");
   });
 });
 
