@@ -1,0 +1,63 @@
+<nav class="flex justify-between p-4 bg-white shadow">
+  <h1>🍽 Restaurant App</h1>
+
+  <button 
+    class="bg-red-500 text-white px-3 py-1 rounded"
+    (click)="logout()">
+    Logout
+  </button>
+</nav>
+<table class="w-full bg-white rounded shadow">
+  <thead class="bg-gray-200">
+    <tr>
+      <th class="p-3">Order ID</th>
+      <th class="p-3">Items</th>
+      <th class="p-3">Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- ✅ IMPORTANT: order is defined here -->
+    <tr *ngFor="let order of orders">
+
+      <td class="p-3">{{ order._id }}</td>
+
+      <td class="p-3">
+        <span *ngFor="let item of order.items">
+          {{ item.name }},
+        </span>
+      </td>
+
+      <td class="p-3">
+
+        <span class="font-semibold mr-2">
+          {{ order.status }}
+        </span>
+
+        <div class="mt-2 flex gap-2 flex-wrap">
+
+          <button 
+            class="bg-yellow-500 text-white px-2 py-1 rounded"
+            (click)="updateStatus(order, 'Preparing')">
+            Preparing
+          </button>
+
+          <button 
+            class="bg-blue-500 text-white px-2 py-1 rounded"
+            (click)="updateStatus(order, 'Ready')">
+            Ready
+          </button>
+
+          <button 
+            class="bg-green-600 text-white px-2 py-1 rounded"
+            (click)="updateStatus(order, 'Delivered')">
+            Delivered
+          </button>
+
+        </div>
+
+      </td>
+
+    </tr>
+  </tbody>
+</table>

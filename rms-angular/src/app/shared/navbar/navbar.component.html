@@ -1,0 +1,58 @@
+<nav class="bg-gray-900 text-white shadow-lg sticky top-0 z-50 w-full">
+
+  <div class="w-full flex justify-between items-center px-10 py-4">
+
+    <!-- Logo -->
+    <div class="text-2xl font-bold text-yellow-400 tracking-wide">
+      🍽 RMS
+    </div>
+
+    <!-- Menu -->
+<div class="flex gap-10 text-lg items-center">
+
+  <a
+    routerLink="/"
+    routerLinkActive="text-yellow-400 border-b-2 border-yellow-400"
+    [routerLinkActiveOptions]="{exact:true}"
+    class="pb-1 hover:text-yellow-400 transition duration-300"
+  >
+    Home
+  </a>
+
+  <a
+    routerLink="/menu"
+    routerLinkActive="text-yellow-400 border-b-2 border-yellow-400"
+    class="pb-1 hover:text-yellow-400 transition duration-300"
+  >
+    Menu
+  </a>
+
+  <!-- CART INDICATOR -->
+
+  <div class="relative font-semibold">
+   <a routerLink="/cart" class="font-semibold">
+🛒 Cart ({{cartCount}})
+  </a>
+  </div>
+
+  <a
+    routerLink="/dashboard"
+    routerLinkActive="text-yellow-400 border-b-2 border-yellow-400"
+    class="pb-1 hover:text-yellow-400 transition duration-300"
+  >
+    Dashboard
+  </a>
+
+  <a
+    routerLink="/login"
+    class="bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-300 transition duration-300"
+  >
+    Login
+  </a>
+
+    </div>  
+   </div>
+
+  
+
+</nav>
