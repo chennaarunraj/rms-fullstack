@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
 const connectDB = require("./config/db");
@@ -15,28 +14,25 @@ const server = http.createServer(app);
 
 const PORT = 5000;
 
-// 🔥 CORS CONFIG (VERY IMPORTANT)
-const corsOptions = {
-  origin: "http://localhost:4200", // frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-};
-
-// ✅ APPLY CORS BEFORE EVERYTHING
+// 🔥 FORCE CORS (THIS IS THE KEY FIX)
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
   next();
 });
+
+// Middleware
 app.use(express.json());
 
-// 🔥 SOCKET.IO WITH SAME CORS
+// 🔥 SOCKET.IO (simple + compatible)
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: "*",
+  },
 });
 
-// Attach io to app
+// Attach io
 app.set("io", io);
 
 // Routes
@@ -46,7 +42,7 @@ app.use("/api/auth", authRoutes);
 
 // Socket connection
 io.on("connection", (socket) => {
-  console.log("Client connected to real-time updates");
+  console.log("Client connected");
 
   socket.on("disconnect", () => {
     console.log("Client disconnected");
